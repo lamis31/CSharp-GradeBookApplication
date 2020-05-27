@@ -22,7 +22,7 @@ namespace GradeBook.GradeBooks
                 averageGrades.Add(s.AverageGrade);
             }
             averageGrades.Sort();
-            int numOfStudentsPerGrade = averageGrades.Count / 5;
+            int numOfStudentsPerGrade = (int)Math.Ceiling(Students.Count * 0.2);
             if(averageGrade > averageGrades[numOfStudentsPerGrade])
             {
                 return 'A';
