@@ -11,6 +11,31 @@ namespace GradeBook.GradeBooks
             Type = Enums.GradeBookType.Ranked;
         }
 
+        public override void CalculateStatistics()
+        {
+            if (Students.Count < 5)
+            {
+                writeToConsoleNoMInNumOfStudents();
+                return;
+            }
+            base.CalculateStatistics();
+        }
+
+        private static void writeToConsoleNoMInNumOfStudents()
+        {
+            Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+        }
+
+        public override void CalculateStudentStatistics(string name)
+        {
+            if (Students.Count < 5)
+            {
+                writeToConsoleNoMInNumOfStudents();
+                return;
+            }
+            base.CalculateStudentStatistics(name);
+        }
+
         public override char GetLetterGrade(double averageGrade)
         {
             if (Students.Count < 5)
