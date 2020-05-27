@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GradeBook.GradeBooks
 {
@@ -21,21 +22,23 @@ namespace GradeBook.GradeBooks
             foreach (Student s in Students ) {
                 averageGrades.Add(s.AverageGrade);
             }
+            var descendingOrderGrades = averageGrades.OrderByDescending(i => i).ToList();
+
             averageGrades.Sort();
             int numOfStudentsPerGrade = (int)Math.Ceiling(Students.Count * 0.2);
-            if(averageGrade > averageGrades[numOfStudentsPerGrade])
+            if(averageGrade > descendingOrderGrades[numOfStudentsPerGrade])
             {
                 return 'A';
             }
-            else if (averageGrade > averageGrades[numOfStudentsPerGrade*2])
+            else if (averageGrade > descendingOrderGrades[numOfStudentsPerGrade*2])
             {
                 return 'B';
             }
-            else if (averageGrade > averageGrades[numOfStudentsPerGrade * 3])
+            else if (averageGrade > descendingOrderGrades[numOfStudentsPerGrade * 3])
             {
                 return 'C';
             }
-            else if (averageGrade > averageGrades[numOfStudentsPerGrade * 4])
+            else if (averageGrade > descendingOrderGrades[numOfStudentsPerGrade * 4])
             {
                 return 'D';
             }
